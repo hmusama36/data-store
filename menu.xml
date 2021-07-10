@@ -1,0 +1,25 @@
+<?xml version="1.0"?> 
+<odoo> 
+	  <!-- Action to open To-do Task list --> 
+	  <act_window id="action_odoo_prectice" 
+	    name="Odoo Practice" 
+	    res_model="odoo.prectice" 
+	    view_mode="tree,form" />
+
+	  <!-- Menu item to open To-do Task list --> 
+		  <menuitem id="chile_odoo_prectice" name= "RRG" sequence="0"/>
+
+		  <menuitem id="chile_odoo_prectice_2" name= "Odoo Practice" parent="chile_odoo_prectice"/>
+
+		  <menuitem id="chile_odoo_prectice_3" name= "Odoo Practice RRG" parent="chile_odoo_prectice_2" action="action_odoo_prectice"/>
+
+	  <act_window id="action_odoo_form" 
+	    name="Odoo Form" 
+	    res_model="odoo.form" 
+	    view_mode="tree,form" />
+
+	  <!-- Menu item to open To-do Task list --> 
+
+		<menuitem id="chile_odoo_form" name= "Odoo Form RRG" parent="chile_odoo_prectice_2" action="action_odoo_form"/>
+
+</odoo> 
