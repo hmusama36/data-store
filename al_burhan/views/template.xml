@@ -1,0 +1,267 @@
+<?xml version="1.0"?> 
+<odoo>
+
+	<record id="burhan_course" model="ir.ui.view">
+		<field name="name">burhan_course_form_view</field>
+		<field name="model">burhan.course</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form>
+
+				<sheet>
+					<group name="group_top">
+						<group name="group_left" string="Course">
+							<field name="course_name"/> 
+						</group> 
+					</group>
+				</sheet>
+			</form> 
+		</field>
+	</record>
+	<record id="view_tree_burhan_course" model="ir.ui.view">
+		<field name="name">Course</field>
+		<field name="model">burhan.course</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="course_name"/>
+			</tree>
+		</field>
+	</record>
+	<record model="ir.actions.act_window" id="burhan_course_action">
+		<field name="name">Course</field>
+		<field name="res_model">burhan.course</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!-- <menuitem name="Course" id="burhan_course_menu" action="burhan_course_action"/> -->
+
+	<record id="burhan_subjects" model="ir.ui.view">
+		<field name="name">burhan_subjects_form_view</field>
+		<field name="model">burhan.subjects</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form>
+
+
+				<sheet>
+					<group name="group_top">
+						<group name="group_left" string="Subjects">
+							<field name="name"/>
+						</group> 
+					</group>
+				</sheet>
+			</form> 
+		</field>
+	</record>
+	<record id="view_tree_burhan_subjects" model="ir.ui.view">
+		<field name="name">Subjects</field>
+		<field name="model">burhan.subjects</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name"/>
+			</tree>
+		</field>
+	</record>
+	<record model="ir.actions.act_window" id="burhan_subjects_action">
+		<field name="name">Subjects</field>
+		<field name="res_model">burhan.subjects</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!-- <menuitem name="Subjects" id="burhan_subjects_menu" action="burhan_subjects_action" sequence="1"/> -->
+
+	<record id="burhan_campus" model="ir.ui.view">
+			<field name="name">burhan_campus_form_view</field>
+			<field name="model">burhan.campus</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form>
+
+
+					<sheet>
+						<group name="group_top">
+							<group name="group_left" string="Campus">
+								<field name="name"/>
+							</group> 
+						</group>
+					</sheet>
+				</form> 
+			</field>
+		</record>
+		<record id="view_tree_burhan_campus" model="ir.ui.view">
+			<field name="name">Campus</field>
+			<field name="model">burhan.campus</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="burhan_campus_action">
+			<field name="name">Campus</field>
+			<field name="res_model">burhan.campus</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<!-- <menuitem name="Campus" id="burhan_campus_menu" action="burhan_campus_action" sequence="1"/> -->
+
+
+		<record id="ecube_city" model="ir.ui.view">
+			<field name="name">ecube_city_form_view</field>
+			<field name="model">ecube.city</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form>
+
+
+					<sheet>
+						<group name="group_top">
+							<group name="group_left">
+								<field name="city"/>
+							</group> 
+						</group>
+					</sheet>
+				</form> 
+			</field>
+		</record>
+		<record id="view_tree_ecube_city" model="ir.ui.view">
+			<field name="name">City</field>
+			<field name="model">ecube.city</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="city"/>
+				</tree>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="ecube_city_action">
+			<field name="name">City</field>
+			<field name="res_model">ecube.city</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<!-- <menuitem name="City" id="ecube_city_menu" action="ecube_city_action" sequence="1"/> -->
+
+		<record id="ecube_res_partner" model="ir.ui.view">
+			<field name="name">ecube_res_partner_form_view</field>
+			<field name="model">ecube.res.partner</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<button name="button" string="Youtube" type="object" class="oe_highlight"/>
+						<button name="host" string="Local Host" type="object" class="oe_highlight"/>
+						<button name="google" string="Google" type="object" class="oe_highlight"/>
+					</header>
+
+
+					<sheet>
+						<group name="group_top" >
+							<group  col="2" colspan="2">
+								<field name="name"/>
+								<field name="father_name"/>
+								<field name="date_of_birth"/>
+								<field name="cnic"/>
+								<field name="mobile_number"/>
+							</group> 
+							<group name="group_right">
+								<field name="address"/>
+								<field name="city"/>
+								<field name="nationality"/>
+								<field name="email" Widget="url"/>
+								<field name="gender"/>
+							</group>
+							
+						</group>
+						<group>
+							<field name="tree_id" nolabel="1">
+								<tree editable="bottom">
+									<field name="employee_name"/>
+									<!-- <field name="employee_id"/>
+									<field name="department"/>
+									<field name="experience"/>
+									<field name="skill_level"/>
+									<field name="start_date"/>
+									<field name="end_date"/> -->
+ 
+								</tree>
+							</field>
+						</group>
+					</sheet>
+				</form> 
+			</field>
+		</record>
+		<record id="view_tree_ecube_res_partner" model="ir.ui.view">
+			<field name="name">Student Form</field>
+			<field name="model">ecube.res.partner</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name"/>
+					<field name="father_name"/>
+					<field name="city"/>
+					<field name="gender"/>
+				</tree>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="ecube_res_partner_action">
+			<field name="name">Student Form</field>
+			<field name="res_model">ecube.res.partner</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem name="Student Form" id="ecube_res_partner_menu" action="ecube_res_partner_action" sequence="1"/>
+
+		<record id="course_offer" model="ir.ui.view">
+			<field name="name">course_offer_form_view</field>
+			<field name="model">course.offer</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<button name="youtube" string="Youtube" type="object" class="oe_highlight"/>
+					</header>
+
+
+					<sheet>
+						<group name="group_top">
+							<group name="group_left">
+								<field name="course_offer"/>
+								<field name="start_date"/>
+								<field name="end_date"/>
+							</group> 
+						</group>
+						<group>
+							<field name="tree_id" nolabel="1">
+								<tree editable="bottom">
+									<field name="campus"/>
+									<field name="start_date"/>
+									<field name="end_date"/>
+									<field name="teacher"/>
+								</tree>
+							</field>
+						</group>
+					</sheet>
+				</form> 
+			</field>
+		</record>
+		<record id="view_tree_course_offer" model="ir.ui.view">
+			<field name="name">Course Offer</field>
+			<field name="model">course.offer</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="course_offer"/>
+					<field name="start_date"/>
+					<field name="end_date"/>
+				</tree>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="course_offer_action">
+			<field name="name">Course Offer</field>
+			<field name="res_model">course.offer</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+
+		<menuitem name="Al Burhan" id="al_burhan_menu"/>
+		<menuitem name="Course" id="burhan_course_menu_main" parent="al_burhan_menu" action="burhan_course_action"/>
+		<menuitem name="Subjects" id="burhan_subjects_menu_main" parent="al_burhan_menu" action="burhan_subjects_action"/>
+		<menuitem name="Campus" id="burhan_campus_menu_main" parent="al_burhan_menu" action="burhan_campus_action"/>
+		<menuitem name="City" id="burhan_city_menu_main" parent="al_burhan_menu" action="ecube_city_action"/>
+		<menuitem name="Student Form" id="ecube_res_partner_menu_main" parent="al_burhan_menu" action="ecube_res_partner_action"/>
+		<menuitem name="Course Offer" id="course_offer_menu_main" parent="al_burhan_menu" action="course_offer_action"/>
+
+</odoo>
