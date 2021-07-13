@@ -156,16 +156,18 @@
 							<group name="group_left">
 								<field name="name"/>
 								<field name="father_name"/>
-								<field name="date_of_birth"/>
 								<field name="cnic"/>
 								<field name="mobile_number"/>
+								<field name="address"/>
+								<field name="date"/>
 							</group> 
 							<group name="group_right">
-								<field name="address"/>
 								<field name="city"/>
 								<field name="nationality"/>
 								<field name="email" Widget="url"/>
 								<field name="gender"/>
+								<field name="course"/>
+								<field name="campus"/>
 							</group>
 						</group>
 					</sheet>
@@ -179,8 +181,9 @@
 				<tree>
 					<field name="name"/>
 					<field name="father_name"/>
-					<field name="city"/>
-					<field name="gender"/>
+					<field name="cnic"/>
+					<field name="course"/>
+					<field name="campus"/>
 				</tree>
 			</field>
 		</record>
@@ -232,6 +235,7 @@
 					<field name="course_offer"/>
 					<field name="start_date"/>
 					<field name="end_date"/>
+
 				</tree>
 			</field>
 		</record>
@@ -264,16 +268,19 @@
 						<group name="group_top">
 							<group name="group_left">
 								<field name="applicant_name" readonly="0"/>
-								<field name="f_name" readonly="0"/>
+								<field name="father_name" readonly="0"/>
 								<field name="cnic" readonly="0"/>
 								<field name="address" readonly="0"/>
 								<field name="mobile_number" readonly="0"/>
+								<field name="app_city_id" readonly="0"/>
+
 							</group> 
 							<group name="group_right">
+								<field name="nationality" readonly="0"/>
 								<field name="email" readonly="0"/>
 								<field name="gender" readonly="0"/>
-								<field name="course" readonly="0"/>
-								<field name="campus" readonly="0"/>
+								<field name="app_course_id" readonly="0"/>
+								<field name="app_campus_id"/>
 								<field name="date" readonly="0"/>
 							</group>
 						</group>
@@ -287,8 +294,9 @@
 			<field name="arch" type="xml">
 				<tree>
 					<field name="applicant_name"/>
-					<field name="course"/>
-					<field name="campus"/>
+					<field name="app_course_id"/>
+					<field name="app_campus_id"/>
+					<field name="date"/>
 					<field name="date"/>
 				</tree>
 			</field>
