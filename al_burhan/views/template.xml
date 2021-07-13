@@ -11,7 +11,8 @@
 				<sheet>
 					<group name="group_top">
 						<group name="group_left" string="Course">
-							<field name="course_name"/> 
+							<field name="name"/>
+							<field name="course_name" widget="many2many_tags"/> 
 						</group> 
 					</group>
 				</sheet>
@@ -144,15 +145,15 @@
 			<field name="arch" type="xml">
 				<form>
 					<header>
-						<button name="button" string="Youtube" type="object" class="oe_highlight"/>
-						<button name="host" string="Local Host" type="object" class="oe_highlight"/>
-						<button name="google" string="Google" type="object" class="oe_highlight"/>
+						<button name="button" string="Visit Website" type="object" class="oe_highlight"/>
+						<!-- <button name="host" string="Local Host" type="object" class="oe_highlight"/>
+						<button name="google" string="Google" type="object" class="oe_highlight"/> -->
 					</header>
 
 
 					<sheet>
 						<group name="group_top" >
-							<group  col="2" colspan="2">
+							<group name="group_left">
 								<field name="name"/>
 								<field name="father_name"/>
 								<field name="date_of_birth"/>
@@ -166,21 +167,6 @@
 								<field name="email" Widget="url"/>
 								<field name="gender"/>
 							</group>
-							
-						</group>
-						<group>
-							<field name="tree_id" nolabel="1">
-								<tree editable="bottom">
-									<field name="employee_name"/>
-									<!-- <field name="employee_id"/>
-									<field name="department"/>
-									<field name="experience"/>
-									<field name="skill_level"/>
-									<field name="start_date"/>
-									<field name="end_date"/> -->
- 
-								</tree>
-							</field>
 						</group>
 					</sheet>
 				</form> 
@@ -203,7 +189,7 @@
 			<field name="res_model">ecube.res.partner</field>
 			<field name="view_mode">tree,form</field>
 		</record>
-		<menuitem name="Student Form" id="ecube_res_partner_menu" action="ecube_res_partner_action" sequence="1"/>
+		<!-- <menuitem name="Student Form" id="ecube_res_partner_menu" action="ecube_res_partner_action" sequence="1"/> -->
 
 		<record id="course_offer" model="ir.ui.view">
 			<field name="name">course_offer_form_view</field>
@@ -211,9 +197,9 @@
 			<field name="type">form</field>
 			<field name="arch" type="xml">
 				<form>
-					<header>
+					<!-- <header>
 						<button name="youtube" string="Youtube" type="object" class="oe_highlight"/>
-					</header>
+					</header> -->
 
 
 					<sheet>
@@ -256,6 +242,66 @@
 		</record>
 
 
+
+		<record id="application_form" model="ir.ui.view">
+			<field name="name">application_form_form_view</field>
+			<field name="model">application.form</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<field name="stage" widget="statusbar" clickable="1"/>
+						<button name="draft" type="object" string="Draft" class="oe_highlight" attrs="{'invisible':[('stage','=','draft')]}"/>
+						<button name="call" type="object" string="Interview Call" class="oe_highlight" attrs="{'invisible':[('stage','=','interview_call')]}"/>
+						<button name="first" type="object" string="First Interview" class="oe_highlight" attrs="{'invisible':[('stage','=','first_interview')]}"/>
+						<button name="second" type="object" string="Second Interview" class="oe_highlight" attrs="{'invisible':[('stage','=','second_interview')]}"/>
+						<button name="enroll" type="object" string="Enrollment" class="oe_highlight" attrs="{'invisible':[('stage','=','enrollment')]}"/>
+						<!-- <field name="state" widget="statusbar" nolabel="1" /> -->
+
+					</header>
+
+					<sheet>
+						<group name="group_top">
+							<group name="group_left">
+								<field name="applicant_name" readonly="0"/>
+								<field name="f_name" readonly="0"/>
+								<field name="cnic" readonly="0"/>
+								<field name="address" readonly="0"/>
+								<field name="mobile_number" readonly="0"/>
+							</group> 
+							<group name="group_right">
+								<field name="email" readonly="0"/>
+								<field name="gender" readonly="0"/>
+								<field name="course" readonly="0"/>
+								<field name="campus" readonly="0"/>
+								<field name="date" readonly="0"/>
+							</group>
+						</group>
+					</sheet>
+				</form> 
+			</field>
+		</record>
+		<record id="view_tree_application_form" model="ir.ui.view">
+			<field name="name">Application Form</field>
+			<field name="model">application.form</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="applicant_name"/>
+					<field name="course"/>
+					<field name="campus"/>
+					<field name="date"/>
+				</tree>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="application_form_action">
+			<field name="name">Application Form</field>
+			<field name="res_model">application.form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+
+
+
 		<menuitem name="Al Burhan" id="al_burhan_menu"/>
 		<menuitem name="Course" id="burhan_course_menu_main" parent="al_burhan_menu" action="burhan_course_action"/>
 		<menuitem name="Subjects" id="burhan_subjects_menu_main" parent="al_burhan_menu" action="burhan_subjects_action"/>
@@ -263,5 +309,6 @@
 		<menuitem name="City" id="burhan_city_menu_main" parent="al_burhan_menu" action="ecube_city_action"/>
 		<menuitem name="Student Form" id="ecube_res_partner_menu_main" parent="al_burhan_menu" action="ecube_res_partner_action"/>
 		<menuitem name="Course Offer" id="course_offer_menu_main" parent="al_burhan_menu" action="course_offer_action"/>
+		<menuitem name="Application Form" id="application_form_menu_main" parent="al_burhan_menu" action="application_form_action"/>
 
 </odoo>

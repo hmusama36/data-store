@@ -151,3 +151,29 @@ os.system('git add *')
 os.system('git status')
 os.system('git commit -m "salllenuim work in bio machine"')
 os.system('git push origin master')
+
+
+
+
+
+
+very important work of create write 
+
+	@api.model
+	def create(self,val):
+		record = super(EcubeResPatrtner, self).create(val)
+		record.creare_application_form()
+		return record
+
+	def write(self,val):
+
+		record = super(EcubeResPatrtner, self).write(val)
+		self.creare_application_form()
+		return record
+
+	def creare_application_form(self):
+		application_form = self.env['application.form']
+		new_record_create_id = application_form.create({
+			'applicant_name' : self.name,
+			'f_name' : self.father_name,
+			})

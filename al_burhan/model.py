@@ -10,8 +10,9 @@ class BurhanCourse(models.Model):
 	_name = 'burhan.course'
 	_description = 'Burhan Course'
 
-	
-	course_name = fields.Many2many("burhan.subjects",string="CourseName")
+
+	name = fields.Char(string="Name")
+	course_name = fields.Many2many("burhan.subjects",string="Subject Name")
 
 
 class BurhanSubjects(models.Model): 
@@ -55,15 +56,15 @@ class EcubeResPatrtner(models.Model):
 
 	def button(self):
 		
-		webbrowser.open('youtube.com',new=2)
+		webbrowser.open('alburhan.org',new=2)
 
 
-	def host(self):
+	# def host(self):
 
-		webbrowser.open('192.168.18.54:8069', new=0)
+	# 	webbrowser.open('192.168.18.54:8069', new=0)
 
-	def google(self):
-		webbrowser.open('google.com', new=1)
+	# def google(self):
+	# 	webbrowser.open('google.com', new=1)
 
 
 	@api.onchange('email')
@@ -96,35 +97,33 @@ class EcubeResPatrtner(models.Model):
 
 
 
-	# @api.onchange('gender')
-	# def _onchange_gender(self):
-	# 	if self.gender: 
-	# 		self.name = str(self.gender)
+	@api.model
+	def create(self,val):
+		record = super(EcubeResPatrtner, self).create(val)
+		record.create_application_form()
+		return record
 
-	tree_id = fields.One2many('ecube.res.partner.tree', 'employee_name')
+	def write(self,val):
 
-class EcubeResPatrtnerTree(models.Model): 
-	_name = 'ecube.res.partner.tree'
-	_description = 'Ecube Res Patrtner Tree'
+		record = super(EcubeResPatrtner, self).write(val)
+		self.create_application_form()
+		return record
 
-
-	employee_name = fields.Many2one('ecube.res.partner',string="Employee Name")
-	# employee_id = fields.Char(string="Employee ID")
-	# department = fields.Char(string="Department")
-	# experience = fields.Char(string="Experience")
-	# skill_level = fields.Selection([('a', 'experienced'),('b', 'unexperienced'),('c', 'career_changer')],string="Skill Level")
-	# start_date = fields.Date(string="Start Date")
-	# end_date = fields.Date("End Date")
-
-
-
-		
-
+	def create_application_form(self):
+		application_form = self.env['application.form']
+		new_record_create_id = application_form.create({
+			'applicant_name' : self.name,
+			'f_name' : self.father_name,
+			'cnic' : self.cnic,
+			'address' : self.address,
+			'mobile_number' : self.mobile_number,
+			'email' : self.email,
+			})
 
 class CourseOffer(models.Model): 
 	_name = 'course.offer'
 	_description = 'Course Offer'
-	# _rec_name = 'course_offer'
+	# _rec_name = 'name'
 
 	course_offer = fields.Many2one("burhan.course",string="Course Offer")
 
@@ -143,6 +142,55 @@ class CourseOfferTree(models.Model):
 	end_date = fields.Date(string="End Date")
 	teacher = fields.Char(string="Teacher")
 
+
+class ApplicationForm(models.Model): 
+	_name = 'application.form'
+	_description = 'Form'
+	# _rec_name = 'name'
+
+	applicant_name = fields.Char(string="Applicant Name")
+	f_name = fields.Char(string="Father Name")
+	cnic = fields.Char(string='Applicant CNIC')
+	address = fields.Char(string="Applicant Address")
+	mobile_number = fields.Char(string="Mobile Number")
+	email = fields.Char(string="Applicant Email")
+	gender = fields.Selection([
+	('male','Male'),
+	('female','Female')], string="Applicant Gender")
+
+	course = fields.Many2one("burhan.course",string="Apply Course")
+	campus = fields.Many2one("burhan.campus",string="Apply Campus")
+	date = fields.Date(string="Apply Date")
+	stage = fields.Selection([
+	('draft','Draft'),
+	('interview_call','Interview Call'),
+	('first_interview','First Interview'),
+	('second_interview','Second Interview'),
+	('enrollment','Enrollment')], default='draft')
+
+
+
+	def draft(self):
+		self.stage = 'draft'
+
+	def call(self):
+		self.stage = 'interview_call'
+	def first(self):
+		self.stage = 'first_interview'
+	def second(self):
+		self.stage = 'second_interview'
+	def enroll(self):
+		self.stage = 'enrollment'
+
+
+	
+		create = self.env['ecube.res.partner'].create({
+		'name': self.applicant_name,
+		'father_name': self.f_name,
+		'cnic': self.cnic,
+		'address': self.address,
+		'mobile_number': self.mobile_number,
+		'email': self.email,})
 
 
 
