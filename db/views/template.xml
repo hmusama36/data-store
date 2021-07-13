@@ -1,0 +1,62 @@
+<?xml version="1.0"?> 
+<odoo>
+	
+	<record id="test_model" model="ir.ui.view">
+		<field name="name">test_model_form_view</field>
+		<field name="model">test.model</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="form">
+				<header>
+				    <!-- <field name="state" widget="statusbar" visible="draft,validate"/> -->
+					<button name="draft" string="Draft"  type ="object" class="oe_highlight" />
+					<button name="validate" string="Validate"  type ="object" class="
+					oe_highlight"/>
+
+				</header>
+
+				<sheet>
+
+					<group name="group_top">
+
+						<group name="group_center" string="Testing">
+							<field name="test_name"/>
+							<field name="mobile"/>
+							<field name="email"/>
+							<field name="job_position"/>
+							<field name="address"/>
+							<field name="age"/>
+						</group>
+
+					</group>
+
+				</sheet>
+
+			</form> 
+
+		</field>
+
+	</record>
+
+	<record id="view_tree_test_model" model="ir.ui.view">
+		<field name="name">test_model</field>
+		<field name="model">test.model</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="test_name"/>
+				<field name="address"/> 
+				<field name="email"/>
+			</tree>
+		</field>
+	</record>
+	<record model="ir.actions.act_window" id="test_model_action">
+		<field name="name">test_model</field>
+		<field name="res_model">test.model</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<menuitem name="test model" id="test_model_menu" action="test_model_action" sequence="1"/>
+
+
+</odoo> 
