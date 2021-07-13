@@ -64,6 +64,7 @@ class EcubeResPatrtner(models.Model):
 	def button(self):
 		
 		webbrowser.open('alburhan.org',new=2)
+	
 
 
 class CourseOffer(models.Model): 
@@ -94,20 +95,21 @@ class ApplicationForm(models.Model):
 	# _rec_name = 'campus_id'
 
 
-	applicant_name = fields.Char(string="Applicant Name")
+	applicant_name = fields.Char(string="Applicant Name", required=True)
 	father_name = fields.Char(string="Father Name")
-	cnic = fields.Char(string='CNIC')
+	cnic = fields.Char(string='CNIC',required=True)
 	address = fields.Char(string="Address")
-	mobile_number = fields.Char(string="Mobile Number")
-	email = fields.Char(string="Email")
-	app_city_id= fields.Many2one("ecube.city",string="City")
+	mobile_number = fields.Char(string="Mobile Number",required=True)
+	email = fields.Char(string="Email",required=True)
+	app_city_id= fields.Many2one("ecube.city",string="City",required=True)
+	student_form = fields.Many2one("ecube.res.partner",string="Student Form")
 	nationality = fields.Char(string="Nationality")
 	gender = fields.Selection([
 	('male','Male'),
 	('female','Female')], string="Gender")
 
-	app_course_id = fields.Many2one("burhan.course",string="Apply Course")
-	app_campus_id = fields.Many2one("burhan.campus",string="Apply Campus")
+	app_course_id = fields.Many2one("burhan.course",string="Apply Course",required=True)
+	app_campus_id = fields.Many2one("burhan.campus",string="Apply Campus",required=True)
 	date = fields.Date(string="Apply Date")
 	stage = fields.Selection([
 	('draft','Draft'),
@@ -143,7 +145,7 @@ class ApplicationForm(models.Model):
 	def write(self,val):
 
 		record = super(ApplicationForm, self).write(val)
-		self.create_student_form()
+		# self.create_student_form()
 		return record
 
 	def create_student_form(self):
@@ -161,7 +163,9 @@ class ApplicationForm(models.Model):
 			'course' : self.app_course_id.id,
 			'campus' : self.app_campus_id.id,
 			'date' : self.date,})
-
+		
+		print (new_record_create_id)
+		self.student_form = new_record_create_id.id
 
 
 	@api.onchange('email')
@@ -189,8 +193,5 @@ class ApplicationForm(models.Model):
 				self.email=""
 				return {'value':{},'warning':{'title':
 					'warning','message':"minimum leght is 6"}}
-
-
-
 
 

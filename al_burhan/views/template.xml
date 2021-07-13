@@ -254,13 +254,13 @@
 			<field name="arch" type="xml">
 				<form>
 					<header>
+						<button name="student" type="object" string="Student Form" class="oe_highlight"/>
 						<field name="stage" widget="statusbar" clickable="1"/>
 						<button name="draft" type="object" string="Draft" class="oe_highlight" attrs="{'invisible':[('stage','=','draft')]}"/>
 						<button name="call" type="object" string="Interview Call" class="oe_highlight" attrs="{'invisible':[('stage','=','interview_call')]}"/>
 						<button name="first" type="object" string="First Interview" class="oe_highlight" attrs="{'invisible':[('stage','=','first_interview')]}"/>
 						<button name="second" type="object" string="Second Interview" class="oe_highlight" attrs="{'invisible':[('stage','=','second_interview')]}"/>
 						<button name="enroll" type="object" string="Enrollment" class="oe_highlight" attrs="{'invisible':[('stage','=','enrollment')]}"/>
-						<!-- <field name="state" widget="statusbar" nolabel="1" /> -->
 
 					</header>
 
@@ -273,6 +273,9 @@
 								<field name="address" readonly="0"/>
 								<field name="mobile_number" readonly="0"/>
 								<field name="app_city_id" readonly="0"/>
+								<field name="student_form" readonly="0"/>
+								
+
 
 							</group> 
 							<group name="group_right">
@@ -282,6 +285,7 @@
 								<field name="app_course_id" readonly="0"/>
 								<field name="app_campus_id"/>
 								<field name="date" readonly="0"/>
+
 							</group>
 						</group>
 					</sheet>
